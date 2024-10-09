@@ -92,6 +92,31 @@ fn base_library_path() -> PathBuf {
     }
 }
 
+#[cfg(all(target_os = "android", target_arch = "aarch64"))]
+fn base_library_path() -> PathBuf {
+    PathBuf::from("android/arm64-v8a/libpv_leopard.so")
+}
+
+#[cfg(all(target_os = "android", target_arch = "arm"))]
+fn base_library_path() -> PathBuf {
+    PathBuf::from("android/armeabi-v7a/libpv_leopard.so")
+}
+
+#[cfg(all(target_os = "android", target_arch = "x86"))]
+fn base_library_path() -> PathBuf {
+    PathBuf::from("android/x86/libpv_leopard.so")
+}
+
+#[cfg(all(target_os = "android", target_arch = "x86_64"))]
+fn base_library_path() -> PathBuf {
+    PathBuf::from("android/x86_64/libpv_leopard.so")
+}
+
+#[cfg(all(target_os = "ios", target_arch = "aarch64"))]
+fn base_library_path() -> PathBuf {
+    PathBuf::from("ios/PvLeopard.xcframework/ios-arm64/PvLeopard.framework/PvLeopard")
+}
+
 pub fn pv_library_path() -> PathBuf {
     let mut path = PathBuf::from(env!("OUT_DIR"));
     path.push(DEFAULT_RELATIVE_LIBRARY_DIR);
